@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Data"
+        android:id="@+id/insert"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="53dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/insertName"
+        android:layout_marginTop="37dp"
+        android:layout_alignRight="@+id/insert"
+        android:layout_alignEnd="@+id/insert"
+        android:layout_alignLeft="@+id/insert"
+        android:layout_alignStart="@+id/insert"
+        android:text="Name" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/insertJob"
+        android:layout_marginTop="51dp"
+        android:layout_below="@+id/insertName"
+        android:layout_alignRight="@+id/insertName"
+        android:layout_alignEnd="@+id/insertName"
+        android:layout_alignLeft="@+id/insertName"
+        android:layout_alignStart="@+id/insertName"
+        android:text="Job" />
+</RelativeLayout>

@@ -16,6 +16,7 @@ public class stats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stats);
 
+
         findViewById(R.id.to_main).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
