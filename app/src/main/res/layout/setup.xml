@@ -34,4 +34,12 @@
         android:layout_alignLeft="@+id/insertName"
         android:layout_alignStart="@+id/insertName"
         android:text="Job" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="see data"
+        android:id="@+id/see"
+        android:layout_above="@+id/insert"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -30,6 +30,10 @@
             android:name=".fight">
 
         </activity>
+        <activity
+            android:name=".setup">
+
+        </activity>
     </application>
 
 </manifest>

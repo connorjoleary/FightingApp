@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(i);
     }
 
+    public void setupButton(View v){
+        //Toast.makeText(MainActivity.this, "second button", Toast.LENGTH_LONG).show();
+        Intent i = new Intent(MainActivity.this, setup.class);
+        MainActivity.this.startActivity(i);
+    }
     /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
