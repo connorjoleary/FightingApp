@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by User on 11/26/2015.
@@ -36,10 +38,10 @@ public class setup extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        myDb.clearDataPlayer();
                         if (myDb.insertPlayer(insertName.getText().toString(), insertJob.getText().toString())) {
-                            //finish();
+                            finish();
                         }
-
                     }
                 }
         );

@@ -12,8 +12,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "data.db";
     public static final String TABLE_NAME = "Player";
-    public static final String COL_1 = "Name";
-    public static final String COL_2 = "Job";
+    public static final String PLAYER_COL_1 = "Name";
+    public static final String PLAYER_COL_2 = "Job";
 
 
     public DatabaseHelper(Context context) {
@@ -22,7 +22,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (Name TEXT PRIMARY KEY, Job TEXT)");
+        db.execSQL("create table " + TABLE_NAME + " (Name TEXT PRIMARY KEY, Job TEXT, FOREIGN KEY (Job) REFERENCES Job(Name))");
+        db.execSQL("create table Job (Name TEXT PRIMARY KEY, Job TEXT, FOREIGN KEY (Job) REFERENCES Job(Name))");
+
     }
 
     @Override
@@ -34,8 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertPlayer(String name, String Job){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues content = new ContentValues();
-        content.put(COL_1, name);
-        content.put(COL_2, Job);
+        content.put(PLAYER_COL_1, name);
+        content.put(PLAYER_COL_2, Job);
         long result = db.insert(TABLE_NAME,null,content);
         if(result==-1){
             return false;
@@ -46,5 +48,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from Player",null);
         return res;
+    }
+    public void clearDataPlayer(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, null, null);
     }
 }
