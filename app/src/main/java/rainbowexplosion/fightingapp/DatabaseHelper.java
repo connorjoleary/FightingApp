@@ -41,9 +41,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean insertPlayer(String name, String Job){
         SQLiteDatabase db = this.getWritableDatabase();
+        //onCreate(db);
         ContentValues content = new ContentValues();
         content.put(PLAYER_COL_1, name);
-        content.put(PLAYER_COL_2, 0);
+        //content.put(PLAYER_COL_2, 0);
         content.put(PLAYER_COL_3, Job);
         long result = db.insert(TABLE_NAME_PLAYER,null,content);
         if(result==-1){
