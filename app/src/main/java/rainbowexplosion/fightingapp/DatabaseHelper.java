@@ -11,9 +11,15 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "data.db";
-    public static final String TABLE_NAME = "Player";
+    public static final String TABLE_NAME_PLAYER = "Player";
     public static final String PLAYER_COL_1 = "Name";
-    public static final String PLAYER_COL_2 = "Job";
+    public static final String PLAYER_COL_2 = "EXP";
+    public static final String PLAYER_COL_3 = "Job";
+
+    public static final String TABLE_NAME_JOB = "Job";
+    public static final String JOB_COL_1 = "Name";
+    public static final String JOB_COL_2 = "Level";
+    public static final String JOB_COL_3 = "Exp Required";
 
 
     public DatabaseHelper(Context context) {
@@ -22,8 +28,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (Name TEXT PRIMARY KEY, Job TEXT, FOREIGN KEY (Job) REFERENCES Job(Name))");
-        db.execSQL("create table Job (Name TEXT PRIMARY KEY, Job TEXT, FOREIGN KEY (Job) REFERENCES Job(Name))");
+        db.execSQL("create table " + TABLE_NAME_PLAYER + " (Name TEXT PRIMARY KEY, EXP INT, FOREIGN KEY (Job) REFERENCES Job(Name))");
+        db.execSQL("create table Job (Name TEXT PRIMARY KEY, EXP INT, FOREIGN KEY (Job) REFERENCES Job(Name))");
 
     }
 
@@ -37,7 +43,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues content = new ContentValues();
         content.put(PLAYER_COL_1, name);
-        content.put(PLAYER_COL_2, Job);
+        content.put(PLAYER_COL_2, 0);
+        content.put(PLAYER_COL_3, Job);
         long result = db.insert(TABLE_NAME,null,content);
         if(result==-1){
             return false;
