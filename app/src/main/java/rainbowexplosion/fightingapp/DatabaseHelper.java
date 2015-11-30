@@ -28,14 +28,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME_PLAYER + " (Name TEXT PRIMARY KEY, EXP INT, FOREIGN KEY (Job) REFERENCES Job(Name))");
-        db.execSQL("create table Job (Name TEXT PRIMARY KEY, EXP INT, FOREIGN KEY (Job) REFERENCES Job(Name))");
+        db.execSQL("create table " + TABLE_NAME_PLAYER + " (Name TEXT PRIMARY KEY, EXP INT, Job TEXT)");
+        //db.execSQL("create table Job (Name TEXT PRIMARY KEY, EXP INT)");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME_PLAYER);
         onCreate(db);
     }
 
@@ -45,7 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         content.put(PLAYER_COL_1, name);
         content.put(PLAYER_COL_2, 0);
         content.put(PLAYER_COL_3, Job);
-        long result = db.insert(TABLE_NAME,null,content);
+        long result = db.insert(TABLE_NAME_PLAYER,null,content);
         if(result==-1){
             return false;
         }
@@ -58,6 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public void clearDataPlayer(){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, null, null);
+        db.delete(TABLE_NAME_PLAYER, null, null);
+        //db.execSQL("create table " + TABLE_NAME_PLAYER + " (Name TEXT PRIMARY KEY, EXP INT, Job TEXT)");
     }
 }
