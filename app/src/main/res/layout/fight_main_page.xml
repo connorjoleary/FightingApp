@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="1"
+            android:contextClickable="false">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Enemy1"
+                android:layout_marginRight="63dp"
+                android:layout_marginEnd="63dp"
+                android:src="@drawable/mudkips"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/Enemy2"
+                android:layout_toStartOf="@+id/Enemy2"
+                android:onClick="playerMadeMove"
+                android:contentDescription="e1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/Enemy1HP" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Enemy2"
+                android:layout_marginRight="65dp"
+                android:layout_marginEnd="65dp"
+                android:src="@drawable/mudkips"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/linearLayout"
+                android:layout_alignEnd="@+id/linearLayout"
+                android:contentDescription="e2"
+                android:contextClickable="false"
+                android:onClick="playerMadeMove" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/Enemy2HP" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Ally2"
+                android:src="@drawable/mudkips"
+                android:layout_marginRight="66dp"
+                android:layout_marginEnd="66dp"
+                android:layout_alignTop="@+id/Ally1"
+                android:layout_alignRight="@+id/Enemy2"
+                android:layout_alignEnd="@+id/Enemy2"
+                android:onClick="champSelected"
+                android:contentDescription="a1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/Ally1HP" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Ally1"
+                android:src="@drawable/mudkips"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/Ally2"
+                android:layout_toStartOf="@+id/Ally2"
+                android:layout_marginRight="67dp"
+                android:layout_marginEnd="67dp"
+                android:onClick="champSelected"
+                android:nestedScrollingEnabled="false"
+                android:contentDescription="a2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/Ally2HP" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout"
+        android:minHeight="100dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/InfoTextBox"
+                android:layout_alignTop="@+id/Fight"
+                android:layout_alignBottom="@+id/Spell"
+                android:layout_toLeftOf="@+id/Fight"
+                android:layout_toRightOf="@+id/Ally2"
+                android:layout_toEndOf="@+id/Ally2" />
+
+            <Spinner
+                android:layout_width="130dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/MoveSpinner" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fight"
+                    android:id="@+id/Fight"
+                    android:layout_alignBottom="@+id/Consumable"
+                    android:layout_toLeftOf="@+id/Consumable"
+                    android:layout_toStartOf="@+id/Consumable"
+                    android:onClick="getSpinnerMove"
+                    android:contentDescription="fight" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Consumable"
+                    android:id="@+id/Consumable"
+                    android:layout_above="@+id/nothing"
+                    android:layout_toRightOf="@+id/Spell"
+                    android:layout_toEndOf="@+id/Spell"
+                    android:onClick="getSpinnerMove"
+                    android:contentDescription="consume" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Spell"
+                    android:id="@+id/Spell"
+                    android:layout_alignBottom="@+id/nothing"
+                    android:layout_toLeftOf="@+id/nothing"
+                    android:layout_toStartOf="@+id/nothing"
+                    android:onClick="getSpinnerMove"
+                    android:contentDescription="spell" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Do Nothing"
+                    android:id="@+id/nothing"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:onClick="playerDoNothing"
+                    android:nestedScrollingEnabled="false" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

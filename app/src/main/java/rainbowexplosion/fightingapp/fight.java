@@ -11,7 +11,7 @@ public class fight extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fight_screen);
+        setContentView(R.layout.monster_screen);
 
         findViewById(R.id.to_main).setOnClickListener(new View.OnClickListener() {
             @Override
