@@ -9,7 +9,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-    <TextView android:text="GREATEST FIGHTING GAME EVER" android:layout_width="wrap_content"
+    <TextView android:text="Turn your screen horizontal" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/startText" />
 
