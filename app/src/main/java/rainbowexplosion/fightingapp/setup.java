@@ -5,28 +5,37 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Spinner;
 
 /**
  * Created by User on 11/26/2015.
  */
 public class setup extends AppCompatActivity {
-    DatabaseHelper myDb;
-    EditText insertName, insertJob;
+    DatabaseAccess databaseAccess;
+    EditText insertName;
+    String insertJob;
     Button addData, seeData;
-
+    Spinner sp;
 
     protected void onCreate(Bundle savedInstanceState) {
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setup);
-        myDb = new DatabaseHelper(this);
+        databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+
+        sp = (Spinner)this.findViewById(R.id.jobSelect);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, databaseAccess.getString("Job", "Title"));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp.setAdapter(adapter);
 
         insertName = (EditText)findViewById(R.id.insertName);
-        insertJob = (EditText)findViewById(R.id.insertJob);
+        insertJob = (String)sp.getSelectedItem();
         addData = (Button)findViewById(R.id.insert);
         seeData = (Button)findViewById(R.id.see);
         AddData();
@@ -38,10 +47,8 @@ public class setup extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        myDb.clearDataPlayer();
-                        if (myDb.insertPlayer(insertName.getText().toString(), insertJob.getText().toString())) {
-                            finish();
-                        }
+                        databaseAccess.insertPlayer(insertName.getText().toString(), insertJob);
+                        finish();
                     }
                 }
         );
@@ -51,7 +58,7 @@ public class setup extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Cursor res = myDb.getPlayerData();
+                        /*Cursor res = myDb.getPlayerData();
                         if (res.getCount() == 0) {
                             showMessage("error", "");
                             return;
@@ -60,10 +67,10 @@ public class setup extends AppCompatActivity {
                         while (res.moveToNext()) {
                             buffer.append("Name :" + res.getString(0) + "\n");
                             buffer.append("Job :" + res.getString(1) + "\n");
-                        }
+                        }*/
 
                         //show all
-                        showMessage("data", buffer.toString());
+                        showMessage("Player name", ((PlayerName) getApplication()).getName());
 
                     }
                 }

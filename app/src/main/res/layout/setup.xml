@@ -23,18 +23,6 @@
         android:layout_alignStart="@+id/insert"
         android:text="Name" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/insertJob"
-        android:layout_marginTop="51dp"
-        android:layout_below="@+id/insertName"
-        android:layout_alignRight="@+id/insertName"
-        android:layout_alignEnd="@+id/insertName"
-        android:layout_alignLeft="@+id/insertName"
-        android:layout_alignStart="@+id/insertName"
-        android:text="Job" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,4 +30,14 @@
         android:id="@+id/see"
         android:layout_above="@+id/insert"
         android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jobSelect"
+        android:layout_below="@+id/insertName"
+        android:layout_alignRight="@+id/insertName"
+        android:layout_alignEnd="@+id/insertName"
+        android:layout_alignLeft="@+id/insertName"
+        android:layout_alignStart="@+id/insertName" />
 </RelativeLayout>

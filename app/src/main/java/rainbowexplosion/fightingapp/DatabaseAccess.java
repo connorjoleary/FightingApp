@@ -51,25 +51,54 @@ public class DatabaseAccess {
         }
     }
 
-    /**
-     * Read all quotes from the database.
-     *
-     * @return a List of quotes
-     */
-    public List<String> getNames() {
+    public List<String> getString(String table, String attribute){
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM Player", null);
+        Cursor cursor = database.rawQuery("SELECT "+table+"."+attribute+" FROM "+ table, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0)+" "+cursor.getInt(1)+" "+cursor.getString(2)+" "+cursor.getString(3));
+            list.add(cursor.getString(0));
             cursor.moveToNext();
         }
         cursor.close();
         return list;
     }
-    public int getEXP() {
-        Cursor cursor = database.rawQuery("SELECT Player.EXP FROM Player", null);
+
+    /**
+     * Read all quotes from the database.
+     *
+     * @return a List of quotes
+     */
+    public List<String> getPlayers(String name) {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Player WHERE Player.Name='"+name+"'", null);
         cursor.moveToFirst();
-        return cursor.getInt(1);
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            list.add(cursor.getInt(1) + "");
+            list.add(cursor.getInt(2)+"");
+            list.add(cursor.getString(3));
+            list.add(cursor.getString(4));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    public List<String> getTools(String name) {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT Tool.Name, Tool.Slot "+
+                "FROM Tool, Player, tool_stock WHERE Tool.Name=tool_stock.Name AND tool_stock.Owner='"
+                +name+"'", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add("Name: "+cursor.getString(0)+" Slot: "+cursor.getString(1));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    public void insertPlayer(String name, String job){
+        database.rawQuery("INSERT INTO Player VALUES ('"+name+"',0,1,'"+job+"',NULL, NULL, NULL, NULL, NULL, NULL);",null);
     }
 }

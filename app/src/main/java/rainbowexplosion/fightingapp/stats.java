@@ -16,33 +16,33 @@ import java.util.List;
  * Created by User on 11/26/2015.
  */
 public class stats extends AppCompatActivity {
-    //DatabaseHelper myDb;
-    //TextView t;
+    TextView t;
     //TextView t2;
     private ListView listView;
     protected void onCreate(Bundle savedInstanceState) {
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stats);
-        /*myDb = new DatabaseHelper(this);
-        Cursor res = myDb.getPlayerData();
-        res.moveToNext();
-
-        t=new TextView(this);
-        t= (TextView) findViewById(R.id.playerName);
-        t.setText(res.getString(0));
-
-        t2=new TextView(this);
-        t2= (TextView) findViewById(R.id.playerEXP);
-        t2.setText(res.getString(1));*/
-
-        this.listView = (ListView) findViewById(R.id.listView);
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
-        List<String> quotes = databaseAccess.getNames();
+
+        List<String> player = databaseAccess.getPlayers(((PlayerName) getApplication()).getName());
+
+        t=new TextView(this);
+        t= (TextView) findViewById(R.id.name);
+        t.setText("Name: "+player.get(0));
+
+        t=new TextView(this);
+        t= (TextView) findViewById(R.id.job);
+        t.setText("Job: "+player.get(3));
+
+
+        this.listView = (ListView) findViewById(R.id.listView);
+        List<String> tools = databaseAccess.getTools(((PlayerName) getApplication()).getName());
+        tools.addAll(databaseAccess.getTools(((PlayerName) getApplication()).getName()));
         databaseAccess.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, quotes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tools);
         this.listView.setAdapter(adapter);
 
 
